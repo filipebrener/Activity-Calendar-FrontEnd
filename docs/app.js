@@ -1,9 +1,7 @@
 function loadData(){
     var request = new XMLHttpRequest();
     var data;
-    var dataType = "Json";
-    var url = "http://localhost:8080/activities"
-    request.open("GET",url);
+    request.open("GET","https://filipebrener.github.io/Activity-Calendar-JSON/activities.json");
     request.send();
     request.onload = function () {
         data = dataType.parse(this.response);
