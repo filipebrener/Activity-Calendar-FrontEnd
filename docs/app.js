@@ -1,12 +1,34 @@
-function loadData(){
+function getRequest(url){
     var request = new XMLHttpRequest();
-    var data;
-    request.open("GET","https://filipebrener.github.io/Activity-Calendar-JSON/activities.json");
+    request.open("GET",url,false);
     request.send();
-    request.onload = function () {
-        data = dataType.parse(this.response);
-    }
-    console.log(data);
+    return request.responseText;
 }
 
-loadData();
+function createLine(activity){
+    let row = document.createElement("tr"); 
+    let tdName = document.createElement("td"); 
+    let tdSubject = document.createElement("td"); 
+    let tdDate = document.createElement("td");
+    tdName.innerHTML = activity.name;
+    tdSubject.innerHTML = activity.subject;
+    tdDate.innerHTML = activity.data;
+
+    row.appendChild(tdName);
+    row.appendChild(tdSubject);
+    row.appendChild(tdDate);
+
+    return row; 
+}
+
+function main(){
+    let url = "http://localhost:8080/activities";
+    let data = getRequest(url);
+    let activities = JSON.parse(data);
+    let table = document.getElementById("table");
+    document.onload
+    activities.forEach(element => {
+        let row = createLine(element);
+        table.appendChild(row);
+    });
+}
