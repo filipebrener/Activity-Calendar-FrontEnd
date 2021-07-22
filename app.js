@@ -22,7 +22,7 @@ function createLine(activity){
 }
 
 function main(){
-    let url = "https://activity-calendar-restapi.herokuapp.com/activities";
+    let url = "http://localhost:8080/activities";
     let data = getRequest(url);
     let activities = JSON.parse(data);
     let table = document.getElementById("table");
